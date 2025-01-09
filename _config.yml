@@ -1,0 +1,194 @@
+# Site configuration
+# 1. Site navigation 
+# 2. Installed Gems
+# 3. Gem settings
+# 4. Jekyll settings
+# 5. Collections
+# 6. Jekyll collections settings
+# 7. Site settings
+# 8. Site favicons & manifest icons
+# 9. Files excluded from Jekyll builds
+
+# 1. Site settings
+encoding: utf-8 # Make sure the encoding is right
+lang: en-GB # Set the site language
+title: "CRM Analytics Academy | Learn Salesforce CRM Analytics Online" # Site name or title, also used in jekyll-seo-tag
+description: "Master Salesforce CRM Analytics FKA Einstein Analytics ( Tableau CRM/ Wave Analytics ) with CRM Analytics Academy. Explore CRM Analytics Course, tutorials, hands-on training, Blogs and Certification to boost your Salesforce analytics skills." # Site description and default description, also used in jekyll-seo-tag
+logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
+url: 'https://crmanalytics.imswarnil.com' # Site URL, also used in jekyll-seo-tag
+website_social_links: # Appears in sidebar. Set the urls then uncomment and comment out as desired
+  Youtube: https://www.youtube.com/CRMA
+  Instagram : https://instagram.com/imswarnil
+  GitHub: https://github.com/imswarnil/CRM-Analytics-Academy
+  RSS: /feed.xml
+
+# 1.1 Author settings
+repo: "https://github.com/imswarnil/CRM-Analytics-Academy"
+author: "Swarnil Singhai" # Author name
+author_image : 
+author_bio: "Founder of CRM Analytics Academy, passionate about helping learners master CRM Analytics with hands-on tutorials, certification, and free resources."
+email: "contact@imswarnil.com"
+author_social_links: # Appears in sidebar. Set the urls then uncomment and comment out as desired
+  Youtube: https://www.youtube.com/@swarnil
+  Twitter: https://twitter.com/imswarnil
+  Instagram : https://instagram.com/imswarnil
+  LinkedIn: https://www.linkedin.com/in/imswarnil
+  GitHub: https://github.com/imswarnil
+  website : https://imswarnil.com
+# disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
+# date_format: "%-d %B %Y" # Blog post date formatting using placeholder formatting
+google_analytics: "G-VJD486Z7WT"
+# google_analytics_anonymize_ip: ""
+service_worker: false # Will turn off the service worker if set to false
+short_name: "CRMA" # The web application short name, defaults to the site title
+css_inline: true # Will insert all styles into a single <style> block in the <head> element and remove the style <link> reference
+
+# 8. Site favicons & manifest icons
+favicons: # Favicons are also used in the manifest file. Syntax is 'size: path'
+  16: '/assets/logos/logo@16px.png'
+  32: '/assets/logos/logo@32px.png'
+  96: '/assets/logos/logo@96px.png'
+  120: '/assets/logos/logo@120px.png'
+  144: '/assets/logos/logo@144px.png'
+  180: '/assets/logos/logo@180px.png'
+  512: '/assets/logos/logo@512px.png'
+  1024: '/assets/logos/logo@1024px.png'
+
+# 8. Navbar
+
+focus_keyword : CRM Analytics
+site_type  : Academy
+tagline : Learn Salesforce CRM Analytics Online 
+
+# 9. Site navigation
+navigation_header:
+  - title: Home
+    url: /
+    icon: fas fa-home
+  - title: About
+    url: /about
+    icon: fas fa-info-circle
+  - title: Training
+    url: /training
+    icon: fas fa-chalkboard-teacher
+  - title: Resources
+    icon: fas fa-tools
+    submenu:
+      - title: Books
+        url: /resources/books
+        icon: fas fa-book
+      - title: Blogs
+        url: /resources/blogs
+        icon: fas fa-blog
+      - title: Tools
+        url: /resources/tools
+        icon: fas fa-tools
+      - title: More Resources
+        icon: fas fa-folder
+        submenu:
+          - title: Case Studies
+            url: /resources/case-studies
+            icon: fas fa-file-alt
+          - title: Whitepapers
+            url: /resources/whitepapers
+            icon: fas fa-file
+  - title: Blog
+    url: /blog
+    icon: fas fa-rss
+
+
+navigation_footer:
+- title: Created by Swarnil Singhai
+  url: https://imswarnil.com
+
+
+
+adsense:
+  data-ad-client: "ca-pub-1291242080282540"
+
+# TIP: Try to keep the number of urls as low to reduce the performance cost
+#      If multiple fonts can be requested in a single url opt for this
+fonts:
+  preconnect_urls:
+    - https://fonts.gstatic.com
+  font_urls:
+    - https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap
+
+# 2. Installed Gems
+plugins:
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jekyll-feed
+- jekyll-commonmark
+- jemoji
+
+# 3. Gem settings
+paginate: 6 # jekyll-paginate > items per page
+paginate_path: blog/page:num # jekyll-paginate > blog page
+jekyll-mentions: https://twitter.com # jekyll-mentions > service used when @replying
+
+# markdown: CommonMark # Markdown parse settings, CommonMark performs slightly better an others in build time
+# commonmark:
+  # options: ["SMART", "FOOTNOTES"]
+  # extensions: ["strikethrough", "autolink", "table"]
+
+# 4. Jekyll settings
+sass:
+  style: compressed # Style compression
+permalink: /:title  # Permalink style /:categories/:title:output_ext
+description_separator: <!-- more --> # Marks end of description in posts
+timezone: Europe/London # Timezone for blog posts and alike
+
+# 5. Collections
+collections:
+  posts:
+    title: Posts # Needed for Siteleaf
+    output: true
+    description: "CRM Analytics Tutorials" # The post list page content
+  training:
+    output: true
+  courses:
+    output: true
+    permalink: /courses/:name/
+
+# 6. Jekyll collections settings
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      image: "" # Default image for sharing
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post # Set the default layout for posts
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page # Set the default layout for pages
+  -
+    scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: tutorials # Set the default layout for pages
+
+
+# 1. Files excluded from Jekyll builds
+exclude:
+- README.md
+- CODE_OF_CONDUCT.md
+- CONTRIBUTING.md
+- screenshot.png
+- LICENSE
+- CNAME
+- Gemfile
+- Gemfile.lock
+- alembic-jekyll-theme.gemspec

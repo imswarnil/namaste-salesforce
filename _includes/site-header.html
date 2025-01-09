@@ -1,0 +1,110 @@
+<header class="header">
+  <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <!-- Navbar Brand -->
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <i class="fa-solid fa-person-chalkboard has-text-primary fa-xl mr-2"></i>
+            <span class="has-text-primary has-text-weight-bold">{{ site.brandname | default: 'CRM Analytics' }}</span>
+            <span class="is-size-6 has-text-dark ml-1">{{ site.site_type | default: 'Academy' }}</span>
+          </a>
+          <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <!-- Navbar Menu -->
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            {% for item in site.navigation_header %}
+              {% if item.submenu %}
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link" href="{{ item.url | relative_url }}">
+                    <span class="icon mr-2"><i class="{{ item.icon }}"></i></span> {{ item.title }}
+                  </a>
+                  <div class="navbar-dropdown">
+                    {% for subitem in item.submenu %}
+                      <a class="navbar-item" href="{{ subitem.url | relative_url }}">
+                        <span class="icon mr-2"><i class="{{ subitem.icon }}"></i></span> {{ subitem.title }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                <a class="navbar-item {% if item.url == page.url %} is-active{% endif %}" href="{{ item.url | relative_url }}">
+                  <span class="icon mr-2"><i class="{{ item.icon }}"></i></span> {{ item.title }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <!-- Navbar Icons -->
+          <div class="navbar-end">
+            <a class="navbar-item" href="/search">
+              <span class="icon"><i class="fas fa-search"></i></span>
+            </a>
+            <a class="navbar-item" href="/support">
+              <span class="icon"><i class="fas fa-hands-helping"></i></span>
+            </a>
+            <a class="navbar-item" href="/donate">
+              <span class="icon"><i class="fas fa-donate"></i></span>
+            </a>
+            <a class="navbar-item" href="https://github.com/daviddarnes/alembic" target="_blank">
+              <span class="icon"><i class="fab fa-github"></i></span> Star on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbarBurgers = Array.from(document.querySelectorAll('.navbar-burger'));
+
+    if (navbarBurgers.length > 0) {
+      navbarBurgers.forEach(burger => {
+        burger.addEventListener('click', () => {
+          const targetId = burger.dataset.target;
+          const target = document.getElementById(targetId);
+
+          // Toggle burger and menu
+          burger.classList.toggle('is-active');
+          target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
+</script>
+
+<style>
+  .header {
+    border-bottom: 1px solid var(--bulma-hr-background-color);
+  }
+  .navbar-item {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover state */
+.navbar-item:hover {
+  background-color: transparent;
+  color: var(--primary);
+}
+
+/* Active state */
+.navbar-item.is-active {
+  background-color: transparent;
+  color: var(--bulma-primary);
+}
+
+/* Optional: Override Bulma default for navbar-link in dropdowns */
+.navbar-item.has-dropdown:hover > .navbar-link {
+  background-color: transparent;
+  color: var(--bulma-primary);
+}
+
+</style>

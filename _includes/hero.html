@@ -1,0 +1,53 @@
+<section class="hero {% if page.bg %}{{ page.bg }}{% else %}is-primary{% endif %} {% if page.height %}{{ page.height }}{% else %}is-small{% endif %}">
+  <div class="hero-body">
+    <div class="container {% if page.align == 'center' %}has-text-centered{% elsif page.align == 'left' %}has-text-left{% elsif page.align == 'right' %}has-text-right{% endif %}">
+      <div class="columns is-vcentered {% if page.layout == 'page' or page.layout == 'post' %}is-flex-direction-row-reverse{% endif %}">
+        <!-- Left Column (Title, Description, Buttons, Student Avatars) -->
+        <div class="column {% if page.layout == 'post' %}is-8{% else %}is-12-mobile{% endif %}">
+          <h1 class="title {% if page.layout == 'post' %}is-2{% else %}is-3{% endif %} p-1">{{ page.title }}</h1>
+          <p class="subtitle {% if page.layout == 'post' %}is-4{% else %}is-5{% endif %}">{{ page.description }}</p>
+
+          {% if page.button_primary_link and page.button_primary_text %}
+          <div class="buttons mt-4">
+            <a href="{{ page.button_primary_link }}" class="button is-primary is-rounded">{{ page.button_primary_text }}</a>
+            {% if page.button_secondary_link and page.button_secondary_text %}
+            <a href="{{ page.button_secondary_link }}" class="button is-light is-rounded">{{ page.button_secondary_text }}</a>
+            {% endif %}
+          </div>
+          {% endif %}
+
+          {% if page.show_students %}
+          <div class="student-avatars mt-4 is-flex">
+            {% for avatar in page.student_avatars %}
+            <img src="{{ avatar.src }}" alt="{{ avatar.alt }}" class="student-avatar mr-1">
+            {% endfor %}
+            <span class="ml-2 has-text-grey">{{ page.student_text }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Right Column (Image, Ads, Breadcrumbs, etc.) -->
+        <div class="column {% if page.layout == 'post' %}is-4{% else %}is-auto{% endif %} has-text-centered">
+          {% if page.layout == 'post' %}
+          <div class="column is-4">
+            {% adsense square %}
+          </div>
+          <nav class="breadcrumb mb-2" aria-label="breadcrumbs">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/crm-analytics">CRM Analytics</a></li>
+              <li class="is-active"><a href="#" aria-current="page">{{ page.title }}</a></li>
+            </ul>
+          </nav>
+          {% endif %}
+
+          {% if page.image %}
+          <figure>
+            <img src="{{ page.image }}" alt="{{ page.title }}" class="hero-image">
+          </figure>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

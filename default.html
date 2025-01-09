@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+
+<head>
+  <!-- General meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if page.indexing == false %}
+  <meta name="robots" content="noindex">
+  {% endif %}
+  {% if page.collectionpage %}
+  {% assign collectiondata = site.collections | where: "label", page.collectionpage | first %}
+  <title>{{ collectiondata.title }} - {{ site.title }}</title>
+  <meta property="og:title" content="{{ collectiondata.title }}">
+  <meta name="description" content="{{ collectiondata.description }}">
+  <meta property="og:description" content="{{ collectiondata.description }}">
+  {% else %}
+  {% endif %}
+  {% if site.fonts.preconnect_urls %}
+  {% for url in site.fonts.preconnect_urls %}
+  <link rel="preconnect" href="{{ url }}" crossorigin />
+  {% endfor %}
+  {% endif %}
+  <link rel="manifest" href="{{ "/manifest.json" | relative_url }}">
+  <meta name="theme-color" content="{{ site.manifest.theme_color | default: '#242e2b' }}"/>
+  <link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {% if site.favicons or site.avatarurl %}{% include site-favicons.html %}{% endif %}
+  {% if site.google_analytics %}{% include site-analytics.html %}{% endif %}
+  {% include site-fonts.html %}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1291242080282540"
+    crossorigin="anonymous"></script>  
+  {% include site-before-start.html %} 
+</head>
+
+<body class="layout-{{ page.layout | default: 'default' }}">
+  {% include site-header.html %}
+  {% unless page.hide_hero %}
+            {% include hero.html %}
+   {% endunless %}
+
+
+   <hr>
+
+
+<!-- Square Ads -->
+<div class="ads-container">
+  {% adsense square %}
+  {% adsense small-square %}
+  {% adsense medium-square %}
+  {% adsense large-square %}
+</div>
+
+<!-- Leaderboard Ads -->
+<div class="ads-container">
+  {% adsense leaderboard %}
+  {% adsense small-leaderboard %}
+  {% adsense medium-leaderboard %}
+  {% adsense large-leaderboard %}
+</div>
+
+<!-- Skyscraper Ads -->
+<div class="ads-container">
+  {% adsense skyscraper %}
+  {% adsense small-skyscraper %}
+</div>
+
+<!-- Billboard Ads -->
+<div class="ads-container">
+  {% adsense billboard %}
+</div>
+
+<!-- In-Article (Infeed) Ads -->
+<div class="ads-container">
+  {% adsense small-leaderboard %}
+</div>
+
+<!-- Multiplex Ads -->
+<div class="ads-container">
+  {% adsense multiplex %}
+</div>
+
+  <div class="container is-centered has-text-centered">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="p-3 m-3">
+          {% adsense top-leaderboard %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-centered has-text-centered is-centered">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="p-3 m-3">
+          {% adsense small-leaderboard %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-centered has-text-centered is-centered">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="p-3 m-3">
+          {% adsense large-leaderboard %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container is-centered has-text-centered is-centered">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="p-3 m-3">
+          {% adsense skyscraper %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container is-centered has-text-centered is-centered">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="p-3 m-3">
+          {% adsense multiplex %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    {{ content }}
+  </div>
+  {% adsense top-leaderboard %}
+  {% if site.service_worker != false %}{% include site-sw.html %}{% endif %}
+  <script src="{{ '/assets/scripts/script.js' | relative_url }}"></script>
+  {% include site-before-end.html %}
+</body>
+</html>
